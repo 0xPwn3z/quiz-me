@@ -1,10 +1,11 @@
-import { useCallback } from "react";
+import { useCallback, useRef } from "react";
 import { useDecks } from "../../hooks/useDecks";
 import { useStats } from "../../hooks/useStats";
 import { ImportSection } from "./ImportSection";
 import { DeckManager } from "./DeckManager";
 import { ExportSection } from "./ExportSection";
 import { ResetSection } from "./ResetSection";
+import { useGsapReveal } from "../../hooks/useGsapReveal";
 import { loadSettings, saveSettings, clearAllStorage } from "../../services/storage";
 import { generateProgressHtml } from "../../services/htmlExport";
 import type { ImportPayload } from "../../types";
@@ -37,6 +38,8 @@ function downloadBlob(blob: Blob, filename: string) {
 export function DataScreen() {
   const { decks, saveDeck, deleteDeck, importBackupDecks } = useDecks();
   const { stats, questionStats, clearAll: clearAllStats, restoreStats, restoreQuestionStats } = useStats();
+  const rootRef = useRef<HTMLDivElement>(null);
+  useGsapReveal(rootRef, { stagger: 0.08 });
 
   const handleImport = useCallback(
     async (parsed: ImportPayload, name: string) => {
@@ -98,7 +101,7 @@ export function DataScreen() {
   }, [clearAllStats]);
 
   return (
-    <div className="flex flex-col gap-6">
+    <div ref={rootRef} className="flex flex-col gap-6">
       <ImportSection onImport={handleImport} />
       <DeckManager decks={decks} onDelete={deleteDeck} />
       <ExportSection

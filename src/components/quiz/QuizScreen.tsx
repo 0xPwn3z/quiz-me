@@ -94,6 +94,7 @@ export function QuizScreen({ quiz, onFinish }: QuizScreenProps) {
         correctIndex={item.correctChoiceIndex}
         disabled={quiz.state.phase !== "active"}
         onSelect={handleSelect}
+        questionKey={quiz.state.currentIndex}
       />
       <FeedbackBar
         isCorrect={

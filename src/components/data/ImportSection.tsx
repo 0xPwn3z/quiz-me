@@ -207,8 +207,15 @@ export function ImportSection({ onImport }: ImportSectionProps) {
   }
 
   return (
-    <Card>
-      <h2 className="mb-4 text-xl font-bold">Importa un mazzo</h2>
+    <Card className="reveal">
+      <div className="mb-4 flex items-center gap-2">
+        <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--color-accent)]/12 text-[var(--color-accent)]">
+          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" />
+          </svg>
+        </span>
+        <h2 className="text-xl font-bold">Importa un mazzo</h2>
+      </div>
       <label className="mb-1 block text-sm font-bold">Nome del mazzo</label>
       <input
         type="text"

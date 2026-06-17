@@ -1,4 +1,3 @@
-
 interface RadioCardProps {
   name: string;
   value: string;
@@ -21,12 +20,18 @@ export function RadioCard({
   return (
     <label
       htmlFor={id}
-      className={`flex cursor-pointer flex-col gap-1 rounded-lg border p-3 transition-colors ${
+      className={`group relative flex cursor-pointer flex-col gap-1 rounded-2xl border p-4 transition-all duration-200 hover:-translate-y-0.5 ${
         checked
-          ? "border-[var(--color-accent)] bg-[var(--color-accent)]/8"
-          : "border-[var(--color-border)] hover:border-[var(--color-accent)]"
+          ? "border-transparent bg-[var(--color-accent)]/8 shadow-md shadow-[var(--color-accent)]/10"
+          : "border-[var(--color-border)] hover:border-[var(--color-accent)]/50"
       }`}
     >
+      {checked && (
+        <span
+          className="pointer-events-none absolute inset-0 rounded-2xl border-2 border-[var(--color-accent)]"
+          style={{ animation: "pop-in 0.3s cubic-bezier(0.22,1,0.36,1)" }}
+        />
+      )}
       <input
         type="radio"
         id={id}
@@ -38,7 +43,9 @@ export function RadioCard({
       />
       <span className="font-semibold">{label}</span>
       {description && (
-        <small className="text-sm text-gray-500 dark:text-gray-400">{description}</small>
+        <small className="text-sm text-gray-500 dark:text-gray-400">
+          {description}
+        </small>
       )}
     </label>
   );

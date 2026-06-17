@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import type { SessionItem, AnswerResult, QuizMode } from "../types";
 import { prepareSession, selectAnswer as engineSelect } from "../services/quizEngine";
 import { recordAnswer } from "../db/database";
@@ -37,7 +37,9 @@ export function useQuiz(): QuizAPI {
     mode: "standard",
   });
   const stateRef = useRef(state);
-  stateRef.current = state;
+  useEffect(() => {
+    stateRef.current = state;
+  }, [state]);
 
   const startQuiz = useCallback(
     (
