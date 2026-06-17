@@ -1,0 +1,62 @@
+[
+  {
+    "id": "q0001",
+    "q": "Qual è la capitale della Francia?",
+    "c": ["Parigi", "Madrid", "Roma", "Berlino"],
+    "a": 0
+  },
+  {
+    "id": "q0002",
+    "q": "Quanto fa 7 × 8?",
+    "c": ["54", "56", "64", "58"],
+    "a": 1
+  },
+  {
+    "id": "q0003",
+    "q": "Quale pianeta è il più vicino al Sole?",
+    "c": ["Venere", "Mercurio", "Marte", "Terra"],
+    "a": 1
+  },
+  {
+    "id": "q0004",
+    "q": "Chi ha dipinto la Gioconda?",
+    "c": ["Michelangelo", "Raffaello", "Leonardo da Vinci", "Caravaggio"],
+    "a": 2
+  },
+  {
+    "id": "q0005",
+    "q": "Qual è il simbolo chimico dell'oro?",
+    "c": ["Ag", "Fe", "Au", "Pb"],
+    "a": 2
+  },
+  {
+    "id": "q0006",
+    "q": "In quale anno è stata scoperta l'America?",
+    "c": ["1492", "1500", "1488", "1510"],
+    "a": 0
+  },
+  {
+    "id": "q0007",
+    "q": "Quale linguaggio viene eseguito direttamente dal browser?",
+    "c": ["Python", "JavaScript", "C++", "Java"],
+    "a": 1
+  },
+  {
+    "id": "q0008",
+    "q": "La fotosintesi clorofilliana avviene nelle piante grazie a quale pigmento?",
+    "c": ["Melanina", "Clorofilla", "Carotene", "Emoglobina"],
+    "a": 1
+  },
+  {
+    "id": "q0009",
+    "q": "Quale tra questi è un numero primo?",
+    "c": ["15", "21", "23", "27"],
+    "a": 2
+  },
+  {
+    "id": "q0010",
+    "q": "Che cosa misura un amperometro?",
+    "c": ["Tensione", "Resistenza", "Corrente elettrica", "Potenza"],
+    "a": 2
+  }
+]
