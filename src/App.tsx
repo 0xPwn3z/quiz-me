@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, Component, type ReactNode } from "react";
 import { AppProvider } from "./context/AppContext";
 import { AppShell } from "./components/layout/AppShell";
 import { HomeScreen } from "./components/home/HomeScreen";
@@ -11,6 +11,25 @@ import { useQuiz } from "./hooks/useQuiz";
 import { useDecks } from "./hooks/useDecks";
 import { useStats } from "./hooks/useStats";
 import type { Screen, QuizMode } from "./types";
+
+class ErrorBoundary extends Component<{ children: ReactNode }, { error: Error | null }> {
+  state = { error: null as Error | null };
+  static getDerivedStateFromError(error: Error) {
+    return { error };
+  }
+  render() {
+    if (this.state.error) {
+      return (
+        <div className="mx-auto mt-20 max-w-lg rounded-2xl border border-red-300 bg-red-50 p-8 text-center dark:bg-red-950">
+          <h2 className="text-xl font-bold text-red-700 dark:text-red-400">Errore</h2>
+          <p className="mt-2 font-mono text-sm text-red-600 dark:text-red-300">{this.state.error.message}</p>
+          <pre className="mt-3 max-h-64 overflow-auto rounded-lg bg-red-100 p-3 text-left text-xs dark:bg-red-900">{this.state.error.stack}</pre>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 export default function App() {
   const { theme, setTheme, cycleTheme } = useTheme();
@@ -71,22 +90,24 @@ export default function App() {
 
   return (
     <AppProvider value={contextValue}>
-      <AppShell>
-        {screen === "home" && <HomeScreen onStart={handleStart} />}
-        {screen === "quiz" && <QuizScreen quiz={quiz} onFinish={handleQuizFinish} />}
-        {screen === "results" && results && (
-          <ResultsScreen
-            score={results.score}
-            total={results.total}
-            durationMs={results.durationMs}
-            onRestart={handleRestart}
-          />
-        )}
-        {screen === "stats" && (
-          <StatsScreen stats={stats} questionStats={allQuestionStats} />
-        )}
-        {screen === "data" && <DataScreen />}
-      </AppShell>
+      <ErrorBoundary>
+        <AppShell>
+          {screen === "home" && <HomeScreen onStart={handleStart} />}
+          {screen === "quiz" && <QuizScreen quiz={quiz} onFinish={handleQuizFinish} />}
+          {screen === "results" && results && (
+            <ResultsScreen
+              score={results.score}
+              total={results.total}
+              durationMs={results.durationMs}
+              onRestart={handleRestart}
+            />
+          )}
+          {screen === "stats" && (
+            <StatsScreen stats={stats} questionStats={allQuestionStats} />
+          )}
+          {screen === "data" && <DataScreen />}
+        </AppShell>
+      </ErrorBoundary>
     </AppProvider>
   );
 }
